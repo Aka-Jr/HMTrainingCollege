@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { addCourse } from '../api'; // Import the function from your api module
+import { addCourse } from '../api'; 
 import { Box, TextField, Typography, Button } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function AddCourse() {
+const AddCourse = () => {
     const [title, setTitle] = useState('');
     const [duration, setDuration] = useState('');
     const [capacity, setCapacity] = useState('');
@@ -11,10 +13,10 @@ function AddCourse() {
         e.preventDefault();
         try {
             await addCourse({ title, duration, capacity });
-            alert('Course added successfully');
+            toast.success('Course added successfully');
         } catch (error) {
             console.error(error);
-            alert('Failed to add course');
+            toast.error('Failed to add course');
         }
 
         setTitle('');
@@ -37,12 +39,14 @@ function AddCourse() {
                     <TextField
                         label="Title"
                         value={title}
+                        sx={{ mt: 2 }}
                         onChange={(e) => setTitle(e.target.value)}
                         required />
 
                     <TextField
                         label="Duration"
                         type="number"
+                        sx={{ mt: 2 }}
                         value={duration}
                         onChange={(e) => setDuration(e.target.value)}
                         required
@@ -51,12 +55,13 @@ function AddCourse() {
                     <TextField
                         label="Capacity"
                         value={capacity}
+                        sx={{ mt: 2 }}
                         onChange={(e) => setCapacity(e.target.value)}
                         required />
                     <Button onClick={handleSubmit}>Add Course</Button>
                 </Box>
             </Box>
-
+                    <ToastContainer />
         </React.Fragment>
     );
 }

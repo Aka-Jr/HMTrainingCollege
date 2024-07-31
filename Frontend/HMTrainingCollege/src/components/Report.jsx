@@ -4,40 +4,40 @@ import { getCourses, getStudents } from '../api';
 import { Box, Typography, Button } from '@mui/material';
 
 const styles = StyleSheet.create({
-    page: { padding: 30, backgroundColor: '#f4f4f4' }, // Light background color for the page
+    page: { padding: 30,}, 
     section: {
         margin: 10,
         padding: 10,
-        borderBottom: '1px solid #ddd', // Light border between sections
-        backgroundColor: '#fff', // White background for each section
+        borderBottom: '1px solid #ddd', 
+        backgroundColor: '#fff', 
     },
     header: {
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 8,
-        color: '#333' // Darker color for the header
+        color: '#333' 
     },
     subHeader: {
         fontSize: 14,
         fontWeight: 'bold',
         marginBottom: 4,
-        color: '#555' // Slightly lighter color for sub-headers
+        color: '#555' 
     },
     text: {
         fontSize: 12,
         marginBottom: 4,
-        color: '#666' // Gray color for text
+        color: '#666' 
     },
     noStudents: {
         fontSize: 12,
-        color: '#999' // Light gray color for "No students" message
+        color: '#999' 
     }
 });
 
 const MyDocument = ({ courses, students }) => (
     <Document>
         <Page style={styles.page}>
-            <Text style={styles.header}>Course Report</Text>
+            <Text style={styles.header}>Summary of Courses and Students enrolled to each course</Text>
             {courses.map(course => {
                 const enrolledStudents = students.filter(student => student.course_id === course.id);
                 return (
@@ -70,20 +70,20 @@ const Report = () => {
     }, []);
 
     return (
-        <Box sx={{ mt: 10, display: 'flex', flexDirection: 'column',justifyContent:'center', alignItems: 'center' }}>
-                    <Typography variant='h4'>
-                        Summary of Courses and Students enrolled to each course
-                    </Typography>
-                    <Button>
+        <Box sx={{ mt: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <Typography variant='h4'>
+                Summary of Courses and Students enrolled to each course
+            </Typography>
+            <Button>
 
-                    <PDFDownloadLink style={{
-                            textDecoration: 'none',
-                           
-                        }} document={<MyDocument courses={courses} students={students} />} fileName="report.pdf">
-                { ({ loading }) => (loading ? 'Loading document...' : 'Download Report')}
-            </PDFDownloadLink>
-                    </Button>
-            
+                <PDFDownloadLink style={{
+                    textDecoration: 'none',
+
+                }} document={<MyDocument courses={courses} students={students} />} fileName="report.pdf">
+                    {({ loading }) => (loading ? 'Loading document...' : 'Download Report')}
+                </PDFDownloadLink>
+            </Button>
+
         </Box>
 
     );

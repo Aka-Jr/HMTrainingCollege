@@ -10,45 +10,45 @@ const StudentList = () => {
         return format(new Date(dateString), 'MMMM do, yyyy');
     }
 
-        useEffect(() => {
-            getStudents().then(response => {
-                setStudents(response.data);
-            });
-        }, []);
+    useEffect(() => {
+        getStudents().then(response => {
+            setStudents(response.data);
+        });
+    }, []);
 
-        return (
-            <Box sx={{ mt: 10 }}>
-                <Typography variant='h3'>Students</Typography>
-                <TableContainer component={Paper}>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>ID</TableCell>
-                                <TableCell>Name</TableCell>
-                                <TableCell>Gender</TableCell>
-                                <TableCell>Date of Birth</TableCell>
-                                <TableCell>Course ID</TableCell>
-                                <TableCell>Date Registered</TableCell>
+    return (
+        <Box sx={{ mt: 10 }}>
+            <Typography variant='h3'>Students</Typography>
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>ID</TableCell>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Gender</TableCell>
+                            <TableCell>Date of Birth</TableCell>
+                            <TableCell>Course ID</TableCell>
+                            <TableCell>Date Registered</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {students.map(student => (
+                            <TableRow key={student.id}>
+                                <TableCell>{student.id}</TableCell>
+                                <TableCell>{student.name}</TableCell>
+                                <TableCell>{student.gender}</TableCell>
+                                <TableCell>{formatDate(student.date_of_birth)}</TableCell>
+                                <TableCell>{student.course_id}</TableCell>
+                                <TableCell>{formatDate(student.date_of_registration)}</TableCell>
                             </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {students.map(student => (
-                                <TableRow key={student.id}>
-                                    <TableCell>{student.id}</TableCell>
-                                    <TableCell>{student.name}</TableCell>
-                                    <TableCell>{student.gender}</TableCell>
-                                    <TableCell>{formatDate(student.date_of_birth)}</TableCell>
-                                    <TableCell>{student.course_id}</TableCell>
-                                    <TableCell>{formatDate(student.date_of_registration)}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                        ))}
+                    </TableBody>
+                </Table>
 
-                </TableContainer>
+            </TableContainer>
 
-            </Box>
-        );
-    }
+        </Box>
+    );
+}
 
-    export default StudentList;
+export default StudentList;

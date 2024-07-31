@@ -14,7 +14,21 @@ const NavigationBar = () => {
                 <IconButton>
                     <SchoolIcon sx={{ color: 'white', }} />
                 </IconButton>
-                <Typography variant='h4' sx={{ marginLeft: 'auto' }}>Hotel Management Training College</Typography>
+                <Typography variant='h5' sx={{ marginLeft: 'auto' }}>Hotel Management Training College</Typography>
+
+                <Button sx={{ marginLeft: 'auto' }} >
+                    <Link
+                        to='/'
+                        style={{
+                            textDecoration: 'none',
+                            color: 'white'
+                        }}
+                    >Home
+
+                    </Link>
+
+                </Button>
+
                 <Button sx={{ marginLeft: 'auto' }} >
                     <Link
                         to='/courses'
@@ -23,6 +37,19 @@ const NavigationBar = () => {
                             color: 'white'
                         }}
                     >Courses
+
+                    </Link>
+
+                </Button>
+
+                <Button sx={{ marginLeft: 'auto' }} >
+                    <Link
+                        to='/students'
+                        style={{
+                            textDecoration: 'none',
+                            color: 'white'
+                        }}
+                    >Students
 
                     </Link>
 
@@ -52,7 +79,7 @@ const NavigationBar = () => {
 
                     </Link>
 
-                    
+
 
                 </Button>
 
@@ -68,7 +95,7 @@ const NavigationBar = () => {
                     </Link>
 
                 </Button>
-                
+
 
             </Toolbar>
         </AppBar>
